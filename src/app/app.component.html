@@ -1,0 +1,33 @@
+<h1>My To-Do List</h1>
+
+<div *ngFor="let t of ToDoList; index as i">
+  <!-- <p *ngIf="!t.completed">{{t.task}}</p>
+  <p *ngIf="t.completed" class="complete">{{t.task}}</p> -->
+  <p [ngClass]="[t.completed ? 'complete': '' ]">{{t.task}}</p>
+  <button *ngIf="!t.completed" (click)="completeTask(i)">Complete</button>
+  <button (click)="removeTask(i)">X</button>
+</div>
+
+<br/>
+
+<button (click)="toggleForm()">Add Task?</button>
+
+<div *ngIf="showForm">
+  <p>Task Name: </p>
+  <input type="text" name="task" [(ngModel)]="newToDo.task" />
+  <button (click)="addToDo()">Add Task To List</button>
+</div>
+
+<!-- <li [ngClass]="{'active': step==='step3'}" (click)="step='step3'">Step3</li>
+
+
+<p [ngClass]="[condition ? 'checkedClass' : 'uncheckedClass']">
+
+
+  Method expression
+
+[ngClass]="getSomeClass()"
+ getSomeClass(){
+        const isValid=this.property1 && this.property2;
+        return {someClass1:isValid , someClass2:isValid};
+    } -->
